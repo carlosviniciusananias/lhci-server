@@ -1,0 +1,18 @@
+{
+  "name": "lhci-server",
+  "version": "1.0.0",
+  "repository": "https://github.com/carlosviniciusananias/lhci-server.git",
+  "author": "Carlos VInicius Ananias <carlos.oliveira69@fatec.sp.gov.br>",
+  "license": "MIT",
+  "scripts": {
+    "lhci:audit": "concurrently \"npm run lhci:server\" \"lhci autorun\"",
+    "lhci:wizard": "lhci wizard",
+    "lhci:server": "lhci server --storage.storageMethod=sql --storage.sqlDialect=sqlite --storage.sqlDatabasePath=./db.sql"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.9.0",
+    "@lhci/server": "^0.9.0",
+    "concurrently": "^7.2.1",
+    "sqlite3": "^5.0.8"
+  }
+}
