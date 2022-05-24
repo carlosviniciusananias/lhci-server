@@ -3,6 +3,9 @@ module.exports = {
     collect: {
       url: ["https://loja.electrolux.com.br/"],
     },
+    asserts: {
+      "preset": "lighthouse:recommended",
+    },
     upload: {
       target: "lhci",
       serverBaseUrl: "http://localhost:9001",
