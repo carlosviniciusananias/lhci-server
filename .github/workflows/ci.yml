@@ -16,10 +16,5 @@ jobs:
           npm build
       - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v7
-        with:
-          urls: |
-            https://loja.electrolux.com.br/
-          budgetPath: ./budget.json
-          temporaryPublicStorage: true
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
