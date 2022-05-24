@@ -4,7 +4,7 @@ module.exports = {
       url: ["https://loja.electrolux.com.br/"],
     },
     asserts: {
-      "preset": "lighthouse:recommended",
+      preset: 'lighthouse:recommended',
     },
     upload: {
       target: "lhci",
