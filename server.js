@@ -14,9 +14,7 @@ createServer({
     storageMethod: "sql",
     sqlDialect: "postgres",
     sqlConnectionSsl: true,
-    // Unfortunately, Heroku free-tier does not have verifiable certificates.
-    // See https://help.heroku.com/3DELT3RK/why-can-t-my-third-party-utility-connect-to-heroku-postgres-with-ssl for why.
-    sqlDialectOptions: { ssl: { rejectUnauthorized: false } },
     sqlConnectionUrl: process.env.DATABASE_URL,
+    sqlDialectOptions: { ssl: true }, // note this new line
   },
 }).then(({ port }) => console.log("Listening on port", port));
