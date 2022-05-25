@@ -1,9 +1,5 @@
 module.exports = {
   ci: {
-    collect: {
-      url: ["https://loja.electrolux.com.br/"],
-      startServerCommand: "rails server -e production",
-    },
     assert: {
       preset: 'lighthouse:recommended',
       assertions: {

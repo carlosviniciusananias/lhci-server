@@ -3,28 +3,28 @@ name: Build project and run Lighthouse CI
 on:
   pull_request:
     branches:
+      - master
       - develop
-      - main
 
 jobs:
-  lhci:
-    name: Lighthouse CI
+  Lighthouse:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
+      - name: Checkout repository
+        uses: actions/checkout@master
+
+      - name: Extract branch name
+        id: extract_branch
+        shell: bash
+        run: echo "##[set-output name=workspace;]$(echo ${{github.HEAD_REF }} | cut -f2 -d"/" | tr "[:upper:]" "[:lower:]" | sed -e 's/-//g' )"
+
+      - name: Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v9
         with:
-          node-version: 12.x
-      - name: npm install
-        run: |
-          npm install
-          npm start
-      - name: run Lighthouse CI
-        run: |
-          npm install -g @lhci/cli@0.3.x
-          lhci autorun || echo "LHCI failed!"
+          urls: |
+            https://loja.electrolux.com.br/=${{ steps.extract_branch.outputs.workspace }}
+          uploadArtifacts: true # save results as an action artifacts
+          temporaryPublicStorage: true # upload
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-          # LHCI_SERVER_BASE_URL: ${{ secrets.LHCI_SERVER_BASE_URL }}
-          # LHCI_TOKEN: ${{ secrets.LHCI_TOKEN }}
