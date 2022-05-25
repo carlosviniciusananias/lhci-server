@@ -22,8 +22,9 @@ jobs:
         uses: treosh/lighthouse-ci-action@v9
         with:
           urls: |
-            https://loja.electrolux.com.br/=${{ steps.extract_branch.outputs.workspace }}
-          uploadArtifacts: true # save results as an action artifacts
-          temporaryPublicStorage: true # upload
+            https://loja.electrolux.com.br/
+          # https://loja.electrolux.com.br/=${{ steps.extract_branch.outputs.workspace }}
+          # serverBaseUrl: ${{ secrets.LHCI_SERVER_URL }}
+          # serverToken: ${{ secrets.LHCI_SERVER_TOKEN }}
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
