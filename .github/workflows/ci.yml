@@ -1,11 +1,10 @@
-name: Build project and run Lighthouse CI
-
 on:
   pull_request:
     branches:
       - master
       - develop
 
+name: Build project and run Lighthouse CI
 jobs:
   Lighthouse:
     runs-on: ubuntu-latest
