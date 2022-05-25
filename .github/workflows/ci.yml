@@ -15,6 +15,7 @@ jobs:
       - name: Dependencies
         run: |
           npm install
+          npm run
       - name: Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.8.x
