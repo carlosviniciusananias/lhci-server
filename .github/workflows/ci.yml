@@ -1,6 +1,6 @@
-name: CI
+name: Lighthouse CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   lhci:
@@ -12,13 +12,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Install Dependencies
+      - name: Install @lhci/cli
         run: |
-          npm install
-      - name: Lighthouse CI
+          npm install -g @lhci/cli@0.5.x
+      - name: Run Lighthouse CI
         run: |
-          npm run build
-          npm install -g @lhci/cli@0.8.x
           lhci autorun
+      - name: Upload Artifact to Lighthouse CI Server
+        run: |
+          lhci upload
         env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }} 
+          LHCI_GITHUB_APP_TOKEN: ${{secrets.LHCI_GITHUB_APP_TOKEN}}
+      - name: Assert Artifact
+        run: |
+          lhci assert
